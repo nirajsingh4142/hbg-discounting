@@ -1,15 +1,11 @@
 package com.hbg.otc.discounting.business.rules.test;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-import org.junit.Test;
 import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 
 import com.hbg.otc.discounting.BaseTest;
 import com.hbg.otc.discounting.model.Item;
-import com.hbg.otc.discounting.model.Item.Category;
 
 /**
  *
@@ -35,13 +31,10 @@ public class ClassifyItemsTest extends BaseTest {
         KieSession kSession =  kContainer.newKieSession();
         
         Item item = new Item("A", 623.0, 234.0);
-        System.out.println( "Item Category: " + item.getCategory()); 
         kSession.insert(item);
        
         int fired = kSession.fireAllRules();
         
-        System.out.println( "Number of Rules executed = " + fired );
-        System.out.println( "Item Category: " + item.getCategory()); 
 	}
 
 }

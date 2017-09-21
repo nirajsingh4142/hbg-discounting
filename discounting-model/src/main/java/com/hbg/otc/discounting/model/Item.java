@@ -5,17 +5,12 @@ import java.util.Objects;
 
 public class Item implements Serializable {
 
-    public enum Category {
-        NA, LOW_RANGE, MID_RANGE, HIGH_RANGE,
-        SPECIAL_MIDHIGH_RANGE //used in chapter 4
-    };
     private static final long serialVersionUID = 1L;
 
     private Long id;
     private String name;
     private Double cost;
     private Double salePrice;
-    private Category category;
 
     public Item() {
     }
@@ -29,7 +24,6 @@ public class Item implements Serializable {
         this.name = name;
         this.cost = cost;
         this.salePrice = salePrice;
-        this.category = Category.NA;
     }
 
     public String getName() {
@@ -64,13 +58,6 @@ public class Item implements Serializable {
         this.id = id;
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
 
     @Override
     public int hashCode() {
@@ -79,7 +66,6 @@ public class Item implements Serializable {
         hash = 59 * hash + Objects.hashCode(this.name);
         hash = 59 * hash + Objects.hashCode(this.cost);
         hash = 59 * hash + Objects.hashCode(this.salePrice);
-        hash = 59 * hash + Objects.hashCode(this.category);
         return hash;
     }
 
@@ -104,16 +90,13 @@ public class Item implements Serializable {
         if (!Objects.equals(this.salePrice, other.salePrice)) {
             return false;
         }
-        if (this.category != other.category) {
-            return false;
-        }
         return true;
     }
 
     @Override
     public String toString() {
         return "Item{" + "id=" + id + ", name=" + name + ", cost=" + cost
-                + ", salePrice=" + salePrice + ", category=" + category + '}';
+                + ", salePrice=" + salePrice + ", category=" + '}';
     }
 
 }

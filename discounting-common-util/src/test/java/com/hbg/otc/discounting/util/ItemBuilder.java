@@ -24,7 +24,6 @@ public class ItemBuilder {
         this.instance.setCost(0.0);
         this.instance.setName("");
         this.instance.setSalePrice(0.0);
-        this.instance.setCategory(Item.Category.NA);
     }
     
     public ItemBuilder withId(long id){
@@ -44,11 +43,6 @@ public class ItemBuilder {
     
     public ItemBuilder withSalePrice(double salePrice){
         this.instance.setSalePrice(salePrice);
-        return this;
-    }
-    
-    public ItemBuilder withCategory(Item.Category category){
-        this.instance.setCategory(category);
         return this;
     }
     

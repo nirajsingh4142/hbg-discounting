@@ -15,7 +15,6 @@ public class Order implements Serializable {
     private Customer customer;
     private List<OrderLine> orderLines = new ArrayList<>();
     private OrderState state;
-    private Discount discount;
 
     public Order() {
     }
@@ -72,21 +71,6 @@ public class Order implements Serializable {
                 .sum();
     }
     
-    public void increaseDiscount(double increase) {
-        if (discount == null) {
-            discount = new Discount(0.0);
-        }
-        discount.setPercentage(discount.getPercentage() + increase);
-    }
-
-    public Discount getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(Discount discount) {
-        this.discount = discount;
-    }
-
     @Override
     public int hashCode() {
         int hash = 3;
@@ -95,7 +79,6 @@ public class Order implements Serializable {
         hash = 17 * hash + Objects.hashCode(this.customer);
         hash = 17 * hash + Objects.hashCode(this.orderLines);
         hash = 17 * hash + Objects.hashCode(this.state);
-        hash = 17 * hash + Objects.hashCode(this.discount);
         return hash;
     }
 
@@ -121,9 +104,6 @@ public class Order implements Serializable {
             return false;
         }
         if (this.state != other.state) {
-            return false;
-        }
-        if (!Objects.equals(this.discount, other.discount)) {
             return false;
         }
         return true;

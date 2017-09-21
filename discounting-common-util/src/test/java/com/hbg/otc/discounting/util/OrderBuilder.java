@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.hbg.otc.discounting.util;
 
 import java.util.ArrayList;
@@ -13,20 +8,13 @@ import com.hbg.otc.discounting.model.Customer;
 import com.hbg.otc.discounting.model.Order;
 import com.hbg.otc.discounting.model.OrderState;
 
-/**
- *
- * @author esteban
- */
 public class OrderBuilder {
     
     private final Order instance;
     private Optional<OrderLineBuilder> orderLineBuilder = Optional.empty();
     
-    public OrderBuilder(Customer customer) {
+    public OrderBuilder() {
         this.instance = new Order();
-        
-        //default values for the new Order
-        this.instance.setCustomer(customer);
         this.instance.setState(OrderState.PENDING);
         this.instance.setDate(new Date());
         this.instance.setItems(new ArrayList<>());

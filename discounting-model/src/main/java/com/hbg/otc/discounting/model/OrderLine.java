@@ -1,13 +1,25 @@
 package com.hbg.otc.discounting.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class OrderLine implements Serializable {
     
     private static final long serialVersionUID = 1L;
     
     private Item item;
+    
     private Integer quantity;
+    
+    private Discount discount;
+    
+    private Account account;
+    
+    private Product product;
+    
+    private List<RuleQualifier> ruleQualifier = null;
+    
+    private Integer ruleWinner; 
     
     public OrderLine() {
     }
@@ -28,6 +40,29 @@ public class OrderLine implements Serializable {
         this.quantity = quantity;
     }
 
+    public void increaseDiscount(double increase) {
+        if (discount == null) {
+            discount = new Discount(0.0);
+        }
+        discount.setPercentage(discount.getPercentage() + increase);
+    }
+
+    public Discount getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Discount discount) {
+        this.discount = discount;
+    }
+    
+    public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+    
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -62,8 +97,34 @@ public class OrderLine implements Serializable {
 
     @Override
     public String toString() {
-        return "OrderLine [item=" + item + ", quantity=" + quantity + "]";
+        return "OrderLine [item=" + item + ", quantity=" + quantity + ", discount=" + discount + "]";
     }
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public List<RuleQualifier> getRuleQualifier() {
+		return ruleQualifier;
+	}
+
+	public void setRuleQualifier(List<RuleQualifier> ruleQualifier) {
+		this.ruleQualifier = ruleQualifier;
+	}
+
+	public Integer getRuleWinner() {
+		return ruleWinner;
+	}
+
+	public void setRuleWinner(Integer ruleWinner) {
+		this.ruleWinner = ruleWinner;
+	}
+
+	
     
     
 
