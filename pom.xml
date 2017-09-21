@@ -37,7 +37,6 @@
         <module>discounting-model</module>
         <module>discounting-common-util</module>
         <module>discounting-services</module>
-        <module>discounting-phreak-inspector</module>
         <module>discounting-business-rules</module>
     </modules>
     

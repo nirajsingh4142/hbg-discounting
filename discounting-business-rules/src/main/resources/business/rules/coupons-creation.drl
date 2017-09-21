@@ -1,0 +1,13 @@
+package business.rules;
+
+import com.hbg.otc.discounting.model.Coupon;
+
+
+rule "Create Coupons for Silver Customers"
+    when
+        $o: Order( $customer: customer )
+        $c: Customer(this == $customer, category == Category.SILVER )
+    then
+        insert(new Coupon($c, $o, Coupon.CouponType.POINTS));        
+end 
+

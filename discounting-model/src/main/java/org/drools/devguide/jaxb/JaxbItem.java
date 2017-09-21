@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.drools.devguide.eshop.model.Item;
+import com.hbg.otc.discounting.model.Item;
 
 @XmlRootElement(name = "shop-item")
 @XmlAccessorType(XmlAccessType.FIELD)
