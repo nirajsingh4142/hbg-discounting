@@ -1,0 +1,14 @@
+/home/nirajkumar/git/hbg-discounting/discounting-model/src/main/java/org/drools/devguide/eshop/model/SalesChannel.java
+/home/nirajkumar/git/hbg-discounting/discounting-model/src/main/java/org/drools/devguide/eshop/model/Order.java
+/home/nirajkumar/git/hbg-discounting/discounting-model/src/main/java/org/drools/devguide/eshop/model/OrderLine.java
+/home/nirajkumar/git/hbg-discounting/discounting-model/src/main/java/org/drools/devguide/eshop/model/Coupon.java
+/home/nirajkumar/git/hbg-discounting/discounting-model/src/main/java/org/drools/devguide/eshop/model/OrderState.java
+/home/nirajkumar/git/hbg-discounting/discounting-model/src/main/java/org/drools/devguide/eshop/model/ProviderRequest.java
+/home/nirajkumar/git/hbg-discounting/discounting-model/src/main/java/org/drools/devguide/eshop/model/Stock.java
+/home/nirajkumar/git/hbg-discounting/discounting-model/src/main/java/org/drools/devguide/eshop/model/SuspiciousOperation.java
+/home/nirajkumar/git/hbg-discounting/discounting-model/src/main/java/org/drools/devguide/eshop/model/Item.java
+/home/nirajkumar/git/hbg-discounting/discounting-model/src/main/java/org/drools/devguide/eshop/model/Manager.java
+/home/nirajkumar/git/hbg-discounting/discounting-model/src/main/java/org/drools/devguide/jaxb/JaxbItem.java
+/home/nirajkumar/git/hbg-discounting/discounting-model/src/main/java/org/drools/devguide/eshop/model/Discount.java
+/home/nirajkumar/git/hbg-discounting/discounting-model/src/main/java/org/drools/devguide/eshop/model/Customer.java
+/home/nirajkumar/git/hbg-discounting/discounting-model/src/main/java/org/drools/devguide/eshop/model/Provider.java
