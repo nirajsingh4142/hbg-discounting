@@ -54,7 +54,7 @@ public class BaseTest {
         return ksession;
     }
 
-    protected <T> Collection<T> getFactsFromKieSession(KieSession ksession, Class<T> classType) {
+    protected static <T> Collection<T> getFactsFromKieSession(KieSession ksession, Class<T> classType) {
         return (Collection<T>) ksession.getObjects(new ClassObjectFilter(classType));
     }
     
