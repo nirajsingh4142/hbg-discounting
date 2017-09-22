@@ -1,7 +1,7 @@
 package com.hbg.otc.discounting.util;
 
 import com.hbg.otc.discounting.model.Account;
-import com.hbg.otc.discounting.model.Rules;
+import com.hbg.otc.discounting.model.RuleSetup;
 
 public class AccountBuilder {
     private OrderLineBuilder superBuilder;

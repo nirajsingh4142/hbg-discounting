@@ -6,7 +6,7 @@ import java.io.Serializable;
  * @author raghav.rampal
  *
  */
-public class Rules implements Serializable {
+public class RuleSetup implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer ruleNumber;

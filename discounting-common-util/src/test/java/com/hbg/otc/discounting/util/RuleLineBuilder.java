@@ -3,7 +3,7 @@ package com.hbg.otc.discounting.util;
 import java.util.Optional;
 
 import com.hbg.otc.discounting.model.OrderLine;
-import com.hbg.otc.discounting.model.Rules;
+import com.hbg.otc.discounting.model.RuleSetup;
 
 public class RuleLineBuilder {
     

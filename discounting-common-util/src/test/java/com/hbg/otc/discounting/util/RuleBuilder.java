@@ -2,11 +2,11 @@ package com.hbg.otc.discounting.util;
 
 import java.util.Optional;
 
-import com.hbg.otc.discounting.model.Rules;
+import com.hbg.otc.discounting.model.RuleSetup;
 
 public class RuleBuilder {
 
-	private final Rules instance;
+	private final RuleSetup instance;
 	private Optional<AccountBuilder> accountBuilder = Optional.empty();
 	private Optional<ProductBuilder> productBuilder = Optional.empty();
 	private Optional<DiscountBuilder> discountBuilder = Optional.empty();
@@ -14,7 +14,7 @@ public class RuleBuilder {
 
 
 	public RuleBuilder() {
-		this.instance = new Rules();
+		this.instance = new RuleSetup();
 	}
 
 	public RuleBuilder withRuleNumber(int ruleNumber){
@@ -47,7 +47,7 @@ public class RuleBuilder {
 		return this.offerBuilder.get();
 	}
 
-	public Rules build(){
+	public RuleSetup build(){
 		if (this.accountBuilder.isPresent()){
             this.instance.setAccount(this.accountBuilder.get().build());
         }

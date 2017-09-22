@@ -5,19 +5,19 @@ import com.hbg.otc.discounting.model.Order;
 import com.hbg.otc.discounting.model.Account;
 import com.hbg.otc.discounting.model.Product;
 import com.hbg.otc.discounting.model.RuleQualifier;
-import com.hbg.otc.discounting.model.Rules;
+import com.hbg.otc.discounting.model.RuleSetup;
 import java.util.*;
 import java.lang.Integer;
 
 
-rule "Test Rule for POC"
+rule "Check for Account Number / Product Group Code / Product ISBN"
 	no-loop
     when  
 	 	$o: Order($lines: orderLines)
        	$line: OrderLine($account: account, $product: product) from $lines
        	$ac: Account() from $account
        	$p: Product() from $product
-       	$r: Rules(account.accountNumber == $line.account.accountNumber || product.productGroupCode.equals($line.product.productGroupCode) || product.isbn == $line.product.isbn )
+       	$r: RuleSetup(account.accountNumber == $line.account.accountNumber || product.productGroupCode.equals($line.product.productGroupCode) || product.isbn == $line.product.isbn )
        	
    then  
      List<RuleQualifier> ruleQualifierList = new ArrayList<RuleQualifier>();

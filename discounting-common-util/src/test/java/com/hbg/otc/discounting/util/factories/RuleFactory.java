@@ -1,14 +1,14 @@
 package com.hbg.otc.discounting.util.factories;
 
-import com.hbg.otc.discounting.model.Rules;
+import com.hbg.otc.discounting.model.RuleSetup;
 import com.hbg.otc.discounting.util.RuleBuilder;
 
 public class RuleFactory {
     
-    public static Rules getRuleSampleData() {
+    public static RuleSetup getRuleSampleData() {
         
         return new RuleBuilder()
-        	.withRuleName("Test rule for POC")
+        	.withRuleName("Check for Account Number / Product Group Code / Product ISBN")
         	.withRuleNumber(1)
         	.withAccount()
             	.withAccountType("51")

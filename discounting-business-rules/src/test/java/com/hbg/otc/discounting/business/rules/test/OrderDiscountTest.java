@@ -6,7 +6,8 @@ import org.kie.api.runtime.KieSession;
 
 import com.hbg.otc.discounting.BaseTest;
 import com.hbg.otc.discounting.model.Order;
-import com.hbg.otc.discounting.model.Rules;
+import com.hbg.otc.discounting.model.OrderLine;
+import com.hbg.otc.discounting.model.RuleSetup;
 import com.hbg.otc.discounting.util.factories.OrderFactory;
 import com.hbg.otc.discounting.util.factories.RuleFactory;
 
@@ -32,7 +33,7 @@ public class OrderDiscountTest extends BaseTest {
 		
 		kSession.insert(o);
 		
-		Rules rule =RuleFactory.getRuleSampleData();
+		RuleSetup rule =RuleFactory.getRuleSampleData();
 		kSession.insert(rule.getAccount());
 		kSession.insert(rule.getDiscount());
 		kSession.insert(rule.getProduct());
@@ -42,7 +43,7 @@ public class OrderDiscountTest extends BaseTest {
 		//int fired = kSession.fireAllRules();
 
 		System.out.println("Rule Qualified : ");
-		System.out.println( "RuleNumber = " +  rule.getRuleNumber() + ", RuleName = " + rule.getRuleName());
+		System.out.println( "RuleNumber = " +  rule.getRuleNumber() + ", RuleName = '" + rule.getRuleName() + "'" );
 
 	}
 }
