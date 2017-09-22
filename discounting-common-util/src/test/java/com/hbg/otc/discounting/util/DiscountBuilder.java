@@ -1,6 +1,7 @@
 package com.hbg.otc.discounting.util;
 
 import com.hbg.otc.discounting.model.Discount;
+import com.hbg.otc.discounting.model.Product;
 
 public class DiscountBuilder {
     private  RuleBuilder superRuleBuilder;
@@ -17,8 +18,12 @@ public class DiscountBuilder {
         return this;
     }
     
-    public RuleBuilder end(){
+    public RuleBuilder endDiscount(){
         return superRuleBuilder;
     } 
+    
+    public Discount build(){
+        return this.instance;
+    }
     
 }

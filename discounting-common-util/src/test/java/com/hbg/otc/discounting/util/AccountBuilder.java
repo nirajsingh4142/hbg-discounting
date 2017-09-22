@@ -79,7 +79,7 @@ public class AccountBuilder {
         return superBuilder;
     } 
     
-    public RuleBuilder endRule(){
+    public RuleBuilder endAccount(){
         return superRuleBuilder;
     }
 

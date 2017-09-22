@@ -1,20 +1,17 @@
-/**
- * 
- */
 package com.hbg.otc.discounting.model;
+
+import java.io.Serializable;
 
 /**
  * @author raghav.rampal
  *
  */
-public class Rules {
+public class Rules implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private Account account;
-
 	private Product product;
-
 	private Discount discount;
-
 	private Offer offer;
 
 	public Account getAccount() {
@@ -48,6 +45,15 @@ public class Rules {
 	public void setOffer(Offer offer) {
 		this.offer = offer;
 	}
-	
+
+	@Override
+	public String toString() {
+		if(account!=null) {
+			return "Rule [ accountType = " + account.getAccountType() + "]";
+		}
+		return null;
+		
+	}
+
 
 }

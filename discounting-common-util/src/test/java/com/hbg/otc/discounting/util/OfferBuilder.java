@@ -2,6 +2,7 @@ package com.hbg.otc.discounting.util;
 
 import java.util.ArrayList;
 
+import com.hbg.otc.discounting.model.Account;
 import com.hbg.otc.discounting.model.Offer;
 import com.hbg.otc.discounting.model.Terms;
 
@@ -38,8 +39,12 @@ public class OfferBuilder {
         return this;
     }
     
-    public RuleBuilder end(){
+    public RuleBuilder endOffer(){
         return superRuleBuilder;
     } 
+    
+    public Offer build(){
+        return this.instance;
+    }
     
 }
