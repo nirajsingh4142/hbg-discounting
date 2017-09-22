@@ -20,6 +20,8 @@ rule "Check for Account Number / Product Group Code / Product ISBN"
        	$r: RuleSetup(account.accountNumber == $line.account.accountNumber || product.productGroupCode.equals($line.product.productGroupCode) || product.isbn == $line.product.isbn )
        	
    then  
+     System.out.println($r.getRuleName() + " applied with discount: " + $r.getDiscount().getPercentage());
+     
      List<RuleQualifier> ruleQualifierList = new ArrayList<RuleQualifier>();
      RuleQualifier ruleQualifier = new RuleQualifier();
      ruleQualifier.setRuleName($r.getRuleName());
@@ -29,6 +31,8 @@ rule "Check for Account Number / Product Group Code / Product ISBN"
      $line.setRuleQualifier(ruleQualifierList);
      
 end
+
+
 
 
 

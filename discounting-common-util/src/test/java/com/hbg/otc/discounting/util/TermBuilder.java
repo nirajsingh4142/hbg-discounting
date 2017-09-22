@@ -3,10 +3,10 @@ package com.hbg.otc.discounting.util;
 import com.hbg.otc.discounting.model.Terms;
 
 public class TermBuilder {
-    private  RuleBuilder superRuleBuilder;
+    private  OfferBuilder superRuleBuilder;
     private final Terms instance;
 
-    public TermBuilder(RuleBuilder superRuleBuilder) {
+    public TermBuilder(OfferBuilder superRuleBuilder) {
         this.superRuleBuilder = superRuleBuilder;
         this.instance = new Terms();
         this.instance.setDays(0);
@@ -35,7 +35,7 @@ public class TermBuilder {
         return this;
     }
     
-    public RuleBuilder end(){
+    public OfferBuilder endTerm(){
         return superRuleBuilder;
     } 
     
