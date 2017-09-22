@@ -44,6 +44,12 @@ public class OrderLineBuilder {
         if (this.itemBuilder.isPresent()){
             this.instance.setItem(this.itemBuilder.get().build());
         }
+        if (this.accountBuilder.isPresent()){
+            this.instance.setAccount(this.accountBuilder.get().build());
+        }
+		if (this.productBuilder.isPresent()){
+            this.instance.setProduct(this.productBuilder.get().build());
+        }
         return this.instance;
     }
     
