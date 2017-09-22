@@ -19,7 +19,7 @@ public class OrderDiscountTest extends BaseTest {
 		KieContainer kContainer = ks.getKieClasspathContainer();
 		KieSession kSession =  kContainer.newKieSession();
 		Order o = OrderFactory.getOrderSampleData();
-        
+		
 		kSession.insert(o.getOrderLines().get(0));
 		kSession.insert(o.getOrderLines().get(0).getAccount());
 		kSession.insert(o.getOrderLines().get(0).getProduct());
@@ -38,10 +38,11 @@ public class OrderDiscountTest extends BaseTest {
 		kSession.insert(rule.getProduct());
 		kSession.insert(rule.getOffer());
 		kSession.insert(rule);
-		int fired = kSession.fireAllRules();
+		
+		//int fired = kSession.fireAllRules();
 
-		System.out.println( "Number of Rules executed = " + fired );
+		System.out.println("Rule Qualified : ");
+		System.out.println( "RuleNumber = " +  rule.getRuleNumber() + ", RuleName = " + rule.getRuleName());
 
-		//System.out.println( "Discount = " + o.getDiscount().getPercentage() );
 	}
 }

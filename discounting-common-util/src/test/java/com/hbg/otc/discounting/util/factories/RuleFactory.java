@@ -8,9 +8,11 @@ public class RuleFactory {
     public static Rules getRuleSampleData() {
         
         return new RuleBuilder()
+        	.withRuleName("Test rule for POC")
+        	.withRuleNumber(1)
         	.withAccount()
             	.withAccountType("51")
-            	.withAccountNumber(0)
+            	.withAccountNumber(123)
             	.endAccount()
             .withProduct()
             	.withProductGroupCode("PB")

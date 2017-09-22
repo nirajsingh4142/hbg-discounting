@@ -2,17 +2,34 @@ package business.rules;
 
 import com.hbg.otc.discounting.model.OrderLine;
 import com.hbg.otc.discounting.model.Order;
-import com.hbg.otc.discounting.model.Discount;
+import com.hbg.otc.discounting.model.Account;
+import com.hbg.otc.discounting.model.Product;
+import com.hbg.otc.discounting.model.RuleQualifier;
 import com.hbg.otc.discounting.model.Rules;
+import java.util.*;
+import java.lang.Integer;
 
-rule "Test Discount"
-    when
-        $o: Order($lines : orderLines.size >= 2)
-        $r: Rules(account.accountType.equals("51"))
-        
-    then
-        System.out.println("order: " + $o.toString());
-        System.out.println("rule: " + $r.toString());
-        
+
+rule "Test Rule for POC"
+	no-loop
+    when  
+	 	$o: Order($lines: orderLines)
+       	$line: OrderLine($account: account, $product: product) from $lines
+       	$ac: Account() from $account
+       	$p: Product() from $product
+       	$r: Rules(account.accountNumber == $line.account.accountNumber || product.productGroupCode.equals($line.product.productGroupCode) || product.isbn == $line.product.isbn )
+       	
+   then  
+     List<RuleQualifier> ruleQualifierList = new ArrayList<RuleQualifier>();
+     RuleQualifier ruleQualifier = new RuleQualifier();
+     ruleQualifier.setRuleName($r.getRuleName());
+     ruleQualifier.setRuleNumber($r.getRuleNumber());
+     
+     ruleQualifierList.add(ruleQualifier);
+     $line.setRuleQualifier(ruleQualifierList);
+     
 end
+
+
+
 

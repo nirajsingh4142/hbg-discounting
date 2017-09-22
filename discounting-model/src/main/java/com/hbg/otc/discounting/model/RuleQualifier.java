@@ -9,14 +9,24 @@ package com.hbg.otc.discounting.model;
  */
 public class RuleQualifier {
 	
-	private Integer rule;
+	private Integer ruleNumber;
+	private String ruleName;
 
-	public Integer getRule() {
-		return rule;
+
+	public String getRuleName() {
+		return ruleName;
 	}
 
-	public void setRule(Integer rule) {
-		this.rule = rule;
+	public void setRuleName(String ruleName) {
+		this.ruleName = ruleName;
+	}
+
+	public Integer getRuleNumber() {
+		return ruleNumber;
+	}
+
+	public void setRuleNumber(Integer ruleNumber) {
+		this.ruleNumber = ruleNumber;
 	}
 
 }

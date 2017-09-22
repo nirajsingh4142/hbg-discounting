@@ -17,6 +17,16 @@ public class RuleBuilder {
 		this.instance = new Rules();
 	}
 
+	public RuleBuilder withRuleNumber(int ruleNumber){
+        this.instance.setRuleNumber(ruleNumber);
+        return this;
+    }
+	
+	public RuleBuilder withRuleName(String ruleName){
+        this.instance.setRuleName(ruleName);
+        return this;
+    }
+	
 	public AccountBuilder withAccount(){
 		this.accountBuilder = Optional.of(new AccountBuilder(this));
 		return this.accountBuilder.get();

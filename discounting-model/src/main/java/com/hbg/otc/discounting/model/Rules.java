@@ -9,6 +9,8 @@ import java.io.Serializable;
 public class Rules implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	private Integer ruleNumber;
+	private String ruleName;
 	private Account account;
 	private Product product;
 	private Discount discount;
@@ -44,6 +46,22 @@ public class Rules implements Serializable {
 
 	public void setOffer(Offer offer) {
 		this.offer = offer;
+	}
+	
+	public String getRuleName() {
+		return ruleName;
+	}
+
+	public void setRuleName(String ruleName) {
+		this.ruleName = ruleName;
+	}
+
+	public Integer getRuleNumber() {
+		return ruleNumber;
+	}
+
+	public void setRuleNumber(Integer ruleNumber) {
+		this.ruleNumber = ruleNumber;
 	}
 
 	@Override

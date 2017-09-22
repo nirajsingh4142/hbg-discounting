@@ -70,49 +70,9 @@ public class Order implements Serializable {
                 .mapToInt(item -> item.getQuantity())
                 .sum();
     }
-    
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 17 * hash + Objects.hashCode(this.orderId);
-        hash = 17 * hash + Objects.hashCode(this.date);
-        hash = 17 * hash + Objects.hashCode(this.customer);
-        hash = 17 * hash + Objects.hashCode(this.orderLines);
-        hash = 17 * hash + Objects.hashCode(this.state);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Order other = (Order) obj;
-        if (!Objects.equals(this.orderId, other.orderId)) {
-            return false;
-        }
-        if (!Objects.equals(this.date, other.date)) {
-            return false;
-        }
-        if (!Objects.equals(this.customer, other.customer)) {
-            return false;
-        }
-        if (!Objects.equals(this.orderLines, other.orderLines)) {
-            return false;
-        }
-        if (this.state != other.state) {
-            return false;
-        }
-        return true;
-    }
-
-   
 
     @Override
     public String toString() {
-        return "Order [ id = " + orderId + ", customer=" + customer + ", date=" + date + ", lines=" + orderLines + ", state=" + state + ']';
+        return "Total " + getOrderLines().size() + " order lines are present.";
     }
 }
