@@ -3,6 +3,7 @@
  */
 package com.hbg.otc.discounting.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,13 +12,13 @@ import java.util.List;
  */
 public class Offer {
 
-	private Boolean hardcode;
+	private Boolean hardcode = false;
 	
-	private Boolean overridenExplicitly;
+	private Boolean overridenExplicitly = false;
 	
 	private Integer priority;
 	
-	private List<Terms> terms;
+	private List<Terms> terms = new ArrayList<Terms>();
 
 	public Boolean getHardcode() {
 		return hardcode;

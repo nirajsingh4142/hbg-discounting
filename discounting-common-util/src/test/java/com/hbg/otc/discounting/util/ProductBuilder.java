@@ -9,26 +9,12 @@ public class ProductBuilder {
 
     public ProductBuilder(OrderLineBuilder superBuilder) {
         this.superBuilder = superBuilder;
-        
         this.instance = new Product();
-        //default values
-        this.instance.setMassProductGroupCode("");
-        this.instance.setProductGroupCode("");
-        this.instance.setFamilyCode("");
-        this.instance.setIsbn(0);
-        this.instance.setOfferCode(0);
     }
     
     public ProductBuilder(RuleBuilder superRuleBuilder) {
         this.superRuleBuilder = superRuleBuilder;
-        
         this.instance = new Product();
-        //default values
-        this.instance.setMassProductGroupCode("");
-        this.instance.setProductGroupCode("");
-        this.instance.setFamilyCode("");
-        this.instance.setIsbn(0);
-        this.instance.setOfferCode(0);
     }
     
     public ProductBuilder withMassProductGroupCode(String massProductGroupCode){

@@ -1,0 +1,13 @@
+package business.rules;
+
+import com.hbg.otc.discounting.model.RuleSetup;
+
+rule "Decide Winning Rule"
+	when
+		$r: RuleSetup(isQualified, offer.overridenExplicitly)
+	then
+		System.out.println("Rule " + $r.getRuleNumber() + " has highest priority");
+		
+		
+		
+end	

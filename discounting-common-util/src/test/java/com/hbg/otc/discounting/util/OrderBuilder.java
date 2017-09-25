@@ -15,10 +15,6 @@ public class OrderBuilder {
     
     public OrderBuilder() {
         this.instance = new Order();
-        this.instance.setState(OrderState.PENDING);
-        this.instance.setDate(new Date());
-        this.instance.setItems(new ArrayList<>());
-        
     }
 
     public OrderBuilder withSate(OrderState state){

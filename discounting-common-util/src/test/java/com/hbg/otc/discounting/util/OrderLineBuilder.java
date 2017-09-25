@@ -25,6 +25,11 @@ public class OrderLineBuilder {
         return this;
     }
     
+    public OrderLineBuilder withOrderLineId(int id){
+        this.instance.setOrderLineId(id);
+        return this;
+    }
+    
     public ItemBuilder withItem(){
         this.itemBuilder = Optional.of(new ItemBuilder(this));
         return this.itemBuilder.get();

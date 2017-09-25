@@ -15,10 +15,6 @@ public class OfferBuilder {
     public OfferBuilder(RuleBuilder superRuleBuilder) {
         this.superRuleBuilder = superRuleBuilder;
         this.instance = new Offer();
-        this.instance.setPriority(0);
-        this.instance.setTerms(new ArrayList<>());
-        this.instance.setOverridenExplicitly(false);
-        this.instance.setHardcode(false);
     }
     
     public OfferBuilder withPriority(Integer priority){

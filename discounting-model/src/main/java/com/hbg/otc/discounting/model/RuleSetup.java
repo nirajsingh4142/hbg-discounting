@@ -15,6 +15,7 @@ public class RuleSetup implements Serializable {
 	private Product product;
 	private Discount discount;
 	private Offer offer;
+	private Boolean isQualified = false;
 
 	public Account getAccount() {
 		return account;
@@ -64,14 +65,12 @@ public class RuleSetup implements Serializable {
 		this.ruleNumber = ruleNumber;
 	}
 
-	@Override
-	public String toString() {
-		if(account!=null) {
-			return "Rule [ accountType = " + account.getAccountType() + "]";
-		}
-		return null;
-		
+	public Boolean getIsQualified() {
+		return isQualified;
 	}
 
+	public void setIsQualified(Boolean isQualified) {
+		this.isQualified = isQualified;
+	}
 
 }

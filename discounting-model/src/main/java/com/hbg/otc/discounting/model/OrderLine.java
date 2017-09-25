@@ -1,11 +1,14 @@
 package com.hbg.otc.discounting.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrderLine implements Serializable {
     
     private static final long serialVersionUID = 1L;
+    
+    private Integer orderLineId;
     
     private Item item;
     
@@ -17,7 +20,7 @@ public class OrderLine implements Serializable {
     
     private Product product;
     
-    private List<RuleQualifier> ruleQualifier = null;
+    private List<RuleQualifier> ruleQualifier = new ArrayList<RuleQualifier>();
     
     private Integer ruleWinner; 
     
@@ -63,43 +66,6 @@ public class OrderLine implements Serializable {
 		this.account = account;
 	}
     
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((item == null) ? 0 : item.hashCode());
-        result = prime * result
-                + ((quantity == null) ? 0 : quantity.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        OrderLine other = (OrderLine) obj;
-        if (item == null) {
-            if (other.item != null)
-                return false;
-        } else if (!item.equals(other.item))
-            return false;
-        if (quantity == null) {
-            if (other.quantity != null)
-                return false;
-        } else if (!quantity.equals(other.quantity))
-            return false;
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "OrderLine [item=" + item + ", quantity=" + quantity + ", discount=" + discount + "]";
-    }
-
 	public Product getProduct() {
 		return product;
 	}
@@ -122,6 +88,14 @@ public class OrderLine implements Serializable {
 
 	public void setRuleWinner(Integer ruleWinner) {
 		this.ruleWinner = ruleWinner;
+	}
+
+	public Integer getOrderLineId() {
+		return orderLineId;
+	}
+
+	public void setOrderLineId(Integer orderLineId) {
+		this.orderLineId = orderLineId;
 	}
 
 	
