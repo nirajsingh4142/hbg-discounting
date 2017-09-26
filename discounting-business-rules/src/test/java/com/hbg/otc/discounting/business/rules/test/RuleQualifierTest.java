@@ -59,10 +59,10 @@ public class RuleQualifierTest extends BaseTest {
 			// Display winning rule
 			for(RuleSetup setup : rulesQualified) {
 				
-				if(setup.getDefinePriority().equals("P1")) {
+				if(setup.getWinningPriority().equals("P1")) {
 					System.out.println("Rule " + setup.getRuleNumber() + " wins with discount: " + setup.getDiscount().getPercentage() + "%");
 					break;
-				} else if(setup.getDefinePriority().equals("P2")) {
+				} else if(setup.getWinningPriority().equals("P2")) {
 					System.out.println("Rule " + setup.getRuleNumber() + " wins with discount: " + setup.getDiscount().getPercentage() + "%");
 					break;
 				} else if(setup.getOffer().getPriority() == maxPriority) {

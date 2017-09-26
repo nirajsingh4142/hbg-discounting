@@ -15,23 +15,23 @@ end	*/
 
 rule "Define priority P1 on basis of overridenExplicitly flag"
 	salience -50
-	enabled($r.definePriority == "")
+	enabled($r.winningPriority == "")
 	when
 		$r: RuleSetup(isQualified, offer.overridenExplicitly)
 	then
 		modify($r){
-			setDefinePriority("P1");
+			setWinningPriority("P1");
 		}
 end
 
 rule "Define priority P2 on basis of hardcode flag"
 	salience -50
-	enabled($r.definePriority == "")
+	enabled($r.winningPriority == "")
 	when
 		$r: RuleSetup(isQualified, offer.hardcode, !offer.overridenExplicitly)
 	then
 		modify($r){
-			setDefinePriority("P2");
+			setWinningPriority("P2");
 		}
 end
 

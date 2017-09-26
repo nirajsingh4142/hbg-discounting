@@ -16,7 +16,7 @@ public class RuleSetup implements Serializable {
 	private Discount discount;
 	private Offer offer;
 	private Boolean isQualified = false;
-	private String definePriority = "";
+	private String winningPriority = "";
 
 	public Account getAccount() {
 		return account;
@@ -73,13 +73,14 @@ public class RuleSetup implements Serializable {
 	public void setIsQualified(Boolean isQualified) {
 		this.isQualified = isQualified;
 	}
-	
-	public String getDefinePriority() {
-		return definePriority;
+
+	public String getWinningPriority() {
+		return winningPriority;
 	}
 
-	public void setDefinePriority(String definePriority) {
-		this.definePriority = definePriority;
+	public void setWinningPriority(String winningPriority) {
+		this.winningPriority = winningPriority;
 	}
+	
 
 }
