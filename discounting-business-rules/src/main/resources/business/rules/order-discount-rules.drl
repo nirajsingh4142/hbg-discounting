@@ -1,12 +1,8 @@
 package business.rules;
 
 import com.hbg.otc.discounting.model.OrderLine;
-import com.hbg.otc.discounting.model.Order;
-import com.hbg.otc.discounting.model.Account;
-import com.hbg.otc.discounting.model.Product;
 import com.hbg.otc.discounting.model.RuleSetup;
 import java.util.*;
-import java.lang.Integer;
 
 rule "Rule if Account Number, Product Group Code and Product ISBN Match"
     no-loop
@@ -105,14 +101,4 @@ rule "Rule if Account Number match"
      		setIsQualified(true);
      	}
 end
-
-rule "Generate Output"
-	when
-		$r: RuleSetup(isQualified)
-	
-	then
-		//System.out.println($r.getRuleName() + " qualified with discount: " + $r.getDiscount().getPercentage());
-end
-
-
 

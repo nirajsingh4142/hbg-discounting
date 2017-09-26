@@ -1,6 +1,7 @@
 package com.hbg.otc.discounting.business.rules.test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.kie.api.KieServices;
@@ -21,45 +22,58 @@ public class RuleQualifierTest extends BaseTest {
 		KieServices ks = KieServices.Factory.get();
 		KieContainer kContainer = ks.getKieClasspathContainer();
 		KieSession kSession =  kContainer.newKieSession();
-		List<OrderLine> orderLineList = OrderFactory.getOrderSampleData().getOrderLines();
 		List<RuleSetup> ruleSetupList = RuleFactory.getRuleSampleData();
-		List<RuleSetup> rulesQualified = new ArrayList<RuleSetup>();;
+		List<RuleSetup> rulesQualified;
+		Integer maxPriority = 0;
+
+		kSession.insert(ruleSetupList);
 
 		for(RuleSetup setup : ruleSetupList) {
 			kSession.insert(setup);
+			kSession.insert(setup.getOffer());
 		}
 
 		//Generate Output
 		System.out.println("---------------------------ORDER #1------------------------------");
-		for(OrderLine orderLine :  orderLineList) {
+		for(OrderLine orderLine :  OrderFactory.getOrderSampleData().getOrderLines()) {
+			rulesQualified = new ArrayList<RuleSetup>();
+
 			System.out.println("Order line: " + orderLine.getOrderLineId() + "\n");
-			
+
 			kSession.insert(orderLine);
 			kSession.fireAllRules();
 			for(RuleSetup setup : ruleSetupList) {
 				if(setup.getIsQualified()) {
 					rulesQualified.add(setup);
-					System.out.println(setup.getRuleName() + " qualified with discount: " + setup.getDiscount().getPercentage());
+					System.out.println(setup.getRuleName() + " qualified with discount: " + setup.getDiscount().getPercentage() + "%");
+					
+					if(setup.getOffer().getPriority() > maxPriority) {
+						maxPriority = setup.getOffer().getPriority();
+					}
 				}
 				
 				setup.setIsQualified(false);
 			}
-			
 			System.out.println("---------------------------------------------------------");
-		}
-		
-	}
-	
-	public void checkWinningRule(List<RuleSetup> rulesQualified) {
-		for(RuleSetup rule : rulesQualified) {
-			if(rule.getOffer()!=null && rule.getOffer().getHardcode()
-					&& !rule.getOffer().getOverridenExplicitly()) {
-				//`Return this rule
-			} else if(rule.getOffer().getOverridenExplicitly()) {
-				// Override this rule
+			
+			// Display winning rule
+			for(RuleSetup setup : rulesQualified) {
+				
+				if(setup.getDefinePriority().equals("P1")) {
+					System.out.println("Rule " + setup.getRuleNumber() + " wins with discount: " + setup.getDiscount().getPercentage() + "%");
+					break;
+				} else if(setup.getDefinePriority().equals("P2")) {
+					System.out.println("Rule " + setup.getRuleNumber() + " wins with discount: " + setup.getDiscount().getPercentage() + "%");
+					break;
+				} else if(setup.getOffer().getPriority() == maxPriority) {
+					System.out.println("Rule " + setup.getRuleNumber() + " wins with discount: " + setup.getDiscount().getPercentage() + "%");
+				}
 			}
 			
+
+			System.out.println("---------------------------------------------------------");
 		}
+
 	}
 
 }
