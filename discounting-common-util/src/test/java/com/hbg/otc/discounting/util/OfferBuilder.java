@@ -21,6 +21,11 @@ public class OfferBuilder {
         this.instance.setPriority(priority);
         return this;
     }
+    
+    public OfferBuilder withNewComboField(Integer newComboField){
+        this.instance.setNewComboField(newComboField);
+        return this;
+    }
 
     public OfferBuilder withHardcode(Boolean hardcode){
         this.instance.setHardcode(hardcode);

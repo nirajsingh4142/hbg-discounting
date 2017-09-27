@@ -49,7 +49,7 @@ public class RuleFactory {
                 	.endOffer()
                 .end()
             .build());
-        
+       
         //Rule #3
         ruleSetupList.add( new RuleBuilder()
             	.withRuleName("Rule 3")
@@ -129,8 +129,102 @@ public class RuleFactory {
                 	.endOffer()
                 .end()
             .build());
+
+        return ruleSetupList;
         
+    }
+    
+    public static List<RuleSetup> getRuleSampleData2() {
+        List<RuleSetup> ruleSetupList = new ArrayList<RuleSetup>();
         
+        //Rule #7
+        ruleSetupList.add( new RuleBuilder()
+            	.withRuleName("Rule 7")
+            	.withRuleNumber(7)
+            	.withAccount()
+                	.withAccountType("51")
+                	.endAccount()
+                .withProduct()
+                	.withProductGroupCode("PB")
+                	.endProduct()
+                .withDiscount()
+                	.withPercentage(50.0)
+                	.endDiscount()
+                .withOffer()	
+                	.withPriority(75)
+                	.withNewComboField(1)
+                	.withTerms()
+                		.withDays(120)
+                		.endTerm()
+                	.endOffer()
+                .end()
+            .build());
+        
+        //Rule #8
+        ruleSetupList.add( new RuleBuilder()
+            	.withRuleName("Rule 8")
+            	.withRuleNumber(8)
+            	.withAccount()
+                	.withAccountType("51")
+                	.endAccount()
+                .withProduct()
+                	.withFamilyCode("HB")
+                	.endProduct()
+                .withDiscount()
+                	.withPercentage(60.0)
+                	.endDiscount()
+                .withOffer()	
+                	.withPriority(75)
+                	.withNewComboField(2)
+                	.endOffer()
+                .end()
+            .build());
+        
+        //Rule #9
+        ruleSetupList.add( new RuleBuilder()
+            	.withRuleName("Rule 9")
+            	.withRuleNumber(9)
+            	.withAccount()
+                	.withAccountType("51")
+                	.endAccount()
+                .withProduct()
+                	.withProductGroupCode("PB")
+                	.endProduct()
+                .withDiscount()
+                	.withPercentage(5.0)
+                	.endDiscount()
+                .withOffer()	
+                	.withPriority(75)
+                	.withNewComboField(2)
+                	.withTerms()
+                		.withDays(120)
+                		.withChargeFreight(true)
+                		.endTerm()
+                	.endOffer()
+                .end()
+            .build());
+        
+        //Rule #10
+        ruleSetupList.add( new RuleBuilder()
+            	.withRuleName("Rule 10")
+            	.withRuleNumber(10)
+            	.withAccount()
+                	.withAccountType("51")
+                	.endAccount()
+                .withProduct()
+                	.withProductGroupCode("PB")
+                	.withIsbn(333)
+                	.endProduct()
+                .withOffer()	
+                	.withPriority(75)
+                	.withNewComboField(2)
+                	.withTerms()
+                		.withReturnable(true)
+                		.endTerm()
+                	.endOffer()
+                .end()
+            .build());
+
         return ruleSetupList;
         
     }

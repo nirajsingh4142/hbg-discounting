@@ -14,7 +14,7 @@ public class OrderFactory {
                     .withCost(20.0)
                 .end()
                 .withAccount()
-                	.withAccountNumber(456)
+                	.withAccountNumber(123)
                 .end()
                 .withProduct()
                 	.withIsbn(111)
@@ -30,7 +30,7 @@ public class OrderFactory {
 	                .withCost(20.0)
 	            .end()
 	            .withAccount()
-	            	.withAccountNumber(456)
+	            	.withAccountNumber(123)
 	            .end()
 	            .withProduct()
 	            	.withIsbn(222)
@@ -38,6 +38,22 @@ public class OrderFactory {
 	            	.withOfferCode(6)
 	            .end()
 	            .withQuantity(200)
+	            .end()
+	        .end()
+        .build();
+    }
+    
+    public static Order getOrderSampleData2() {
+	
+        return new OrderBuilder()
+	        .newLine()
+	        	.withOrderLineId(3)
+	            .withAccount()
+	            	.withAccountType("51")
+	            .end()
+	            .withProduct()
+	            	.withIsbn(333)
+	            .end()
 	            .end()
 	        .end()
         .build();

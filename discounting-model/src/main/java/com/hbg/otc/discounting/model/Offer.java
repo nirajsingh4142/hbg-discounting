@@ -13,11 +13,9 @@ import java.util.List;
 public class Offer {
 
 	private Boolean hardcode = false;
-	
 	private Boolean overridenExplicitly = false;
-	
 	private Integer priority;
-	
+	private Integer newComboField;
 	private List<Terms> terms = new ArrayList<Terms>();
 
 	public Boolean getHardcode() {
@@ -50,6 +48,14 @@ public class Offer {
 
 	public void setTerms(List<Terms> terms) {
 		this.terms = terms;
+	}
+
+	public Integer getNewComboField() {
+		return newComboField;
+	}
+
+	public void setNewComboField(Integer newComboField) {
+		this.newComboField = newComboField;
 	}
 	
 }

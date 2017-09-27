@@ -1,13 +1,14 @@
 package business.rules;
 
 import com.hbg.otc.discounting.model.RuleSetup;
+import com.hbg.otc.discounting.model.RulePrecedence;
 
 /*
 rule "Decide Winning Rule"
 	salience -100
 	when
 		$list: List($rules: ruleSetup) 
-       	$setup: RuleSetup(isQualified) from $list
+       	$setup: RuleSetup() from $list
        
 	then
 		System.out.println("Offer " + $setup.getRuleNumber());
@@ -33,5 +34,55 @@ rule "Define priority P2 on basis of hardcode flag"
 		modify($r){
 			setWinningPriority("P2");
 		}
+end
+
+rule "Assign prioriy flag on basis of overriden flag"
+	no-loop
+	enabled($r.winningPriority == "")
+	when
+		$rulePrecedence: RulePrecedence()
+		$r: RuleSetup(isQualified, offer.overridenExplicitly, $rulePrecedence.ruleName.equals("Must be overriden explicitly"))
+	then
+		modify($r){
+			setWinningPriority($rulePrecedence.getPriority());
+		}
+			
+end
+
+rule "Assign prioriy flag on basis of hardcode flag"
+	no-loop
+	enabled($r.winningPriority == "")
+	when
+		$rulePrecedence: RulePrecedence()
+		$r: RuleSetup(isQualified, offer.hardcode, $rulePrecedence.ruleName.equals("Hardcode"))
+	then
+		modify($r){
+			setWinningPriority($rulePrecedence.getPriority());
+		}
+			
+end
+
+rule "Assign prioriy flag on basis of priority value"
+	no-loop
+	enabled($r.winningPriority == "")
+	when
+		$rulePrecedence: RulePrecedence()
+		$r: RuleSetup(isQualified, offer.priority!=null, $rulePrecedence.ruleName.equals("Priority"))
+	then
+		modify($r){
+			setWinningPriority($rulePrecedence.getPriority());
+		}
+			
+end
+
+rule "Decide winner on basis of combo field"
+	salience -100
+	when
+		$r: RuleSetup(isQualified, offer.newComboField == 2, !isWinner)
+	then
+     	modify($r){
+			setIsWinner(true);
+		}
+			
 end
 

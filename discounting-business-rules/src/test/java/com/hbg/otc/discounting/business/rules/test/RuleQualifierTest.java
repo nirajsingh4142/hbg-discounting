@@ -2,6 +2,7 @@ package com.hbg.otc.discounting.business.rules.test;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.kie.api.KieServices;
@@ -10,9 +11,11 @@ import org.kie.api.runtime.KieSession;
 
 import com.hbg.otc.discounting.BaseTest;
 import com.hbg.otc.discounting.model.OrderLine;
+import com.hbg.otc.discounting.model.RulePrecedence;
 import com.hbg.otc.discounting.model.RuleSetup;
 import com.hbg.otc.discounting.util.factories.OrderFactory;
 import com.hbg.otc.discounting.util.factories.RuleFactory;
+import com.hbg.otc.discounting.util.factories.RulePrecedenceBuilder;
 
 public class RuleQualifierTest extends BaseTest {
 
@@ -23,9 +26,19 @@ public class RuleQualifierTest extends BaseTest {
 		KieContainer kContainer = ks.getKieClasspathContainer();
 		KieSession kSession =  kContainer.newKieSession();
 		List<RuleSetup> ruleSetupList = RuleFactory.getRuleSampleData();
+		//List<RuleSetup> ruleSetupList = RuleFactory.getRuleSampleData2();
+		
+		List<OrderLine> orderLineList = OrderFactory.getOrderSampleData().getOrderLines();
+		//List<OrderLine> orderLineList = OrderFactory.getOrderSampleData2().getOrderLines();
+		
 		List<RuleSetup> rulesQualified;
+		List<String> priorityList;
 		Integer maxPriority = 0;
 
+		List<RulePrecedence> rulePrecedences = RulePrecedenceBuilder.loadRulePrecedence();
+		for(RulePrecedence precedences : rulePrecedences) {
+			kSession.insert(precedences);
+		}
 		kSession.insert(ruleSetupList);
 
 		for(RuleSetup setup : ruleSetupList) {
@@ -35,8 +48,9 @@ public class RuleQualifierTest extends BaseTest {
 
 		//Generate Output
 		System.out.println("---------------------------ORDER #1------------------------------");
-		for(OrderLine orderLine :  OrderFactory.getOrderSampleData().getOrderLines()) {
+		for(OrderLine orderLine :  orderLineList) {
 			rulesQualified = new ArrayList<RuleSetup>();
+			priorityList = new ArrayList<String>();
 
 			System.out.println("Order line: " + orderLine.getOrderLineId() + "\n");
 
@@ -44,36 +58,64 @@ public class RuleQualifierTest extends BaseTest {
 			kSession.fireAllRules();
 			for(RuleSetup setup : ruleSetupList) {
 				if(setup.getIsQualified()) {
+					priorityList.add(setup.getWinningPriority());
 					rulesQualified.add(setup);
-					System.out.println(setup.getRuleName() + " qualified with discount: " + setup.getDiscount().getPercentage() + "%");
+					if(setup.getDiscount()!=null) {
+						System.out.println(setup.getRuleName() + " qualified with discount: " + setup.getDiscount().getPercentage() + "%");
+					}else {
+						System.out.println(setup.getRuleName() + " qualified with discount: 0%");
+					}
 					
 					if(setup.getOffer().getPriority() > maxPriority) {
 						maxPriority = setup.getOffer().getPriority();
 					}
 				}
-				
+
 				setup.setIsQualified(false);
 			}
-			System.out.println("---------------------------------------------------------");
 			
+			System.out.println("---------------------------------------------------------");
+
+			//sorted list on basis of rule number
+			sortListOnBasisOfRule(rulesQualified);
+
 			// Display winning rule
 			for(RuleSetup setup : rulesQualified) {
 				
-				if(setup.getWinningPriority().equals("P1")) {
-					System.out.println("Rule " + setup.getRuleNumber() + " wins with discount: " + setup.getDiscount().getPercentage() + "%");
-					break;
-				} else if(setup.getWinningPriority().equals("P2")) {
-					System.out.println("Rule " + setup.getRuleNumber() + " wins with discount: " + setup.getDiscount().getPercentage() + "%");
-					break;
-				} else if(setup.getOffer().getPriority() == maxPriority) {
-					System.out.println("Rule " + setup.getRuleNumber() + " wins with discount: " + setup.getDiscount().getPercentage() + "%");
+				if(setup.getOffer().getNewComboField() == null) {
+					if(setup.getWinningPriority().equals("P1")) {
+						System.out.println("Rule " + setup.getRuleNumber() + " wins with discount: " + setup.getDiscount().getPercentage() + "%");
+						break;
+						
+					} else if(!priorityList.contains("P1") && setup.getWinningPriority().equals("P2")) {
+						System.out.println("Rule " + setup.getRuleNumber() + " wins with discount: " + setup.getDiscount().getPercentage() + "%");
+						break;
+						
+					} else if(setup.getOffer().getPriority() == maxPriority) {
+						System.out.println("Rule " + setup.getRuleNumber() + " wins with discount: " + setup.getDiscount().getPercentage() + "%");
+						break;
+					} 
 				}
+				
 			}
 			
+			//WINNER
+			for(RuleSetup setup : ruleSetupList) {
+				if(setup.getIsWinner()) {
+					System.out.println("Winner is " + setup.getRuleNumber());
+				}
+			}
 
 			System.out.println("---------------------------------------------------------");
 		}
+	}
 
+	private static void sortListOnBasisOfRule(List<RuleSetup> rulesQualified) {
+		Collections.sort(rulesQualified, new Comparator<RuleSetup>(){
+			public int compare(RuleSetup o1, RuleSetup o2){
+				return o1.getRuleNumber() - o2.getRuleNumber();
+			}
+		});
 	}
 
 }
