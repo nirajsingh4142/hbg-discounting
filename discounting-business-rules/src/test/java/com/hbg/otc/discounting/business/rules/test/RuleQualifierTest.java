@@ -26,11 +26,11 @@ public class RuleQualifierTest extends BaseTest {
 		KieServices ks = KieServices.Factory.get();
 		KieContainer kContainer = ks.getKieClasspathContainer();
 		KieSession kSession =  kContainer.newKieSession();
-		List<RuleSetup> ruleSetupList = RuleFactory.getRuleSampleData();
-		//List<RuleSetup> ruleSetupList = RuleFactory.getRuleSampleData2();
+		//List<RuleSetup> ruleSetupList = RuleFactory.getRuleSampleData();
+		List<RuleSetup> ruleSetupList = RuleFactory.getRuleSampleData2();
 
-		List<OrderLine> orderLineList = OrderFactory.getOrderSampleData().getOrderLines();
-		//List<OrderLine> orderLineList = OrderFactory.getOrderSampleData2().getOrderLines();
+		//List<OrderLine> orderLineList = OrderFactory.getOrderSampleData().getOrderLines();
+		List<OrderLine> orderLineList = OrderFactory.getOrderSampleData2().getOrderLines();
 
 		List<RuleSetup> rulesQualified;
 		List<String> priorityList;
@@ -110,10 +110,10 @@ public class RuleQualifierTest extends BaseTest {
 					
 					for(Terms term : setup.getOffer().getTerms()) {
 						if(term.getDays() != 0) {
-							terms = " and Term " + term.getDays() + " days";
+							terms = " and Term " + term.getDays() + " days from Rule " + setup.getRuleNumber();
 						}
 						if(term.getFreeFreight()) {
-							terms = terms + " having free freight.";
+							terms = "\n" + terms + "\n having free freight from Rule " + setup.getRuleNumber();
 						}
 					}
 				}
