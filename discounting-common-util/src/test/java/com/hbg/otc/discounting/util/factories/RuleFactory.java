@@ -219,7 +219,7 @@ public class RuleFactory {
                 	.withPriority(75)
                 	.withNewComboField(2)
                 	.withTerms()
-                		.withReturnable(true)
+                		.withFreeFreight(true)
                 		.endTerm()
                 	.endOffer()
                 .end()

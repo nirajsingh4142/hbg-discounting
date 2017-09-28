@@ -1,9 +1,9 @@
 package com.hbg.otc.discounting.util;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
-import com.hbg.otc.discounting.model.Account;
 import com.hbg.otc.discounting.model.Offer;
 import com.hbg.otc.discounting.model.Terms;
 
@@ -52,6 +52,13 @@ public class OfferBuilder {
     } 
     
     public Offer build(){
+    	List<Terms> tempList = new ArrayList<Terms>();
+    	if (this.termBuilder.isPresent()){
+    		tempList.add(this.termBuilder.get().build());
+        	this.instance.setTerms(tempList);
+        }
+
+    	
         return this.instance;
     }
     

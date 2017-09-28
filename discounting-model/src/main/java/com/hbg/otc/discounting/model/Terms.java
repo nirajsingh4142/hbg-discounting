@@ -10,13 +10,9 @@ package com.hbg.otc.discounting.model;
 public class Terms {
 	
 	private Integer days;
-	
 	private Boolean freeFreight;
-	
 	private Boolean chargeFreight;
 	
-	private Boolean returnable;
-
 	public Integer getDays() {
 		return days;
 	}
@@ -39,14 +35,6 @@ public class Terms {
 
 	public void setChargeFreight(Boolean chargeFreight) {
 		this.chargeFreight = chargeFreight;
-	}
-
-	public Boolean getReturnable() {
-		return returnable;
-	}
-
-	public void setReturnable(Boolean returnable) {
-		this.returnable = returnable;
 	}
 
 }

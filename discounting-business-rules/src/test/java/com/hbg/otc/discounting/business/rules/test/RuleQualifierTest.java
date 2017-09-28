@@ -13,6 +13,7 @@ import com.hbg.otc.discounting.BaseTest;
 import com.hbg.otc.discounting.model.OrderLine;
 import com.hbg.otc.discounting.model.RulePrecedence;
 import com.hbg.otc.discounting.model.RuleSetup;
+import com.hbg.otc.discounting.model.Terms;
 import com.hbg.otc.discounting.util.factories.OrderFactory;
 import com.hbg.otc.discounting.util.factories.RuleFactory;
 import com.hbg.otc.discounting.util.factories.RulePrecedenceBuilder;
@@ -27,13 +28,16 @@ public class RuleQualifierTest extends BaseTest {
 		KieSession kSession =  kContainer.newKieSession();
 		List<RuleSetup> ruleSetupList = RuleFactory.getRuleSampleData();
 		//List<RuleSetup> ruleSetupList = RuleFactory.getRuleSampleData2();
-		
+
 		List<OrderLine> orderLineList = OrderFactory.getOrderSampleData().getOrderLines();
 		//List<OrderLine> orderLineList = OrderFactory.getOrderSampleData2().getOrderLines();
-		
+
 		List<RuleSetup> rulesQualified;
 		List<String> priorityList;
 		Integer maxPriority = 0;
+		Double totalDiscount = 0.0;
+		String winnerRules = "";
+		String terms = "";
 
 		List<RulePrecedence> rulePrecedences = RulePrecedenceBuilder.loadRulePrecedence();
 		for(RulePrecedence precedences : rulePrecedences) {
@@ -65,7 +69,7 @@ public class RuleQualifierTest extends BaseTest {
 					}else {
 						System.out.println(setup.getRuleName() + " qualified with discount: 0%");
 					}
-					
+
 					if(setup.getOffer().getPriority() > maxPriority) {
 						maxPriority = setup.getOffer().getPriority();
 					}
@@ -73,40 +77,54 @@ public class RuleQualifierTest extends BaseTest {
 
 				setup.setIsQualified(false);
 			}
-			
-			System.out.println("---------------------------------------------------------");
+
+			System.out.println("----------------------------------------------------------------------------");
 
 			//sorted list on basis of rule number
 			sortListOnBasisOfRule(rulesQualified);
 
-			// Display winning rule
 			for(RuleSetup setup : rulesQualified) {
-				
+
+				//Display winner with combo field parameters excluded
 				if(setup.getOffer().getNewComboField() == null) {
 					if(setup.getWinningPriority().equals("P1")) {
 						System.out.println("Rule " + setup.getRuleNumber() + " wins with discount: " + setup.getDiscount().getPercentage() + "%");
 						break;
-						
+
 					} else if(!priorityList.contains("P1") && setup.getWinningPriority().equals("P2")) {
 						System.out.println("Rule " + setup.getRuleNumber() + " wins with discount: " + setup.getDiscount().getPercentage() + "%");
 						break;
-						
+
 					} else if(setup.getOffer().getPriority() == maxPriority) {
 						System.out.println("Rule " + setup.getRuleNumber() + " wins with discount: " + setup.getDiscount().getPercentage() + "%");
 						break;
 					} 
+				} 
+
+				//Display winner with combo field parameters included
+				else if(setup.getIsWinner()) {
+					if(setup.getDiscount()!=null) {
+						totalDiscount = totalDiscount + setup.getDiscount().getPercentage();
+						winnerRules = winnerRules + ", " + setup.getRuleNumber();
+					}
+					
+					for(Terms term : setup.getOffer().getTerms()) {
+						if(term.getDays() != 0) {
+							terms = " and Term " + term.getDays() + " days";
+						}
+						if(term.getFreeFreight()) {
+							terms = terms + " having free freight.";
+						}
+					}
 				}
-				
+
 			}
 			
-			//WINNER
-			for(RuleSetup setup : ruleSetupList) {
-				if(setup.getIsWinner()) {
-					System.out.println("Winner is " + setup.getRuleNumber());
-				}
+			if(!winnerRules.isEmpty()) {
+				System.out.println("Rule " + winnerRules.substring(2) + " wins with discount: " + totalDiscount + "%" + terms);
 			}
-
-			System.out.println("---------------------------------------------------------");
+			
+			System.out.println("----------------------------------------------------------------------------");
 		}
 	}
 

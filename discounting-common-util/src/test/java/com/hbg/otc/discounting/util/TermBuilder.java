@@ -12,7 +12,6 @@ public class TermBuilder {
         this.instance.setDays(0);
         this.instance.setFreeFreight(false);
         this.instance.setChargeFreight(false);
-        this.instance.setReturnable(false);
     }
     
     public TermBuilder withDays(Integer days){
@@ -30,13 +29,12 @@ public class TermBuilder {
         return this;
     }
     
-    public TermBuilder withReturnable(Boolean returnable){
-        this.instance.setReturnable(returnable);
-        return this;
-    }
-    
     public OfferBuilder endTerm(){
         return superRuleBuilder;
     } 
+    
+    public Terms build(){
+        return this.instance;
+    }
     
 }
