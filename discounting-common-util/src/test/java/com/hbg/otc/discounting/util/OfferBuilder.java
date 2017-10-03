@@ -10,10 +10,16 @@ import com.hbg.otc.discounting.model.Terms;
 public class OfferBuilder {
 	private Optional<TermBuilder> termBuilder = Optional.empty();
 	private  RuleBuilder superRuleBuilder;
+	private StandardRuleBuilder standardRuleBuilder;
     private final Offer instance;
 
     public OfferBuilder(RuleBuilder superRuleBuilder) {
         this.superRuleBuilder = superRuleBuilder;
+        this.instance = new Offer();
+    }
+    
+    public OfferBuilder(StandardRuleBuilder standardRuleBuilder) {
+        this.standardRuleBuilder = standardRuleBuilder;
         this.instance = new Offer();
     }
     
@@ -49,6 +55,10 @@ public class OfferBuilder {
     
     public RuleBuilder endOffer(){
         return superRuleBuilder;
+    } 
+    
+    public StandardRuleBuilder endStandardOffer(){
+        return standardRuleBuilder;
     } 
     
     public Offer build(){

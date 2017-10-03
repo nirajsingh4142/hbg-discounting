@@ -18,7 +18,7 @@ rule "Define priority P1 on basis of overridenExplicitly flag"
 	salience -50
 	enabled($r.winningPriority == "")
 	when
-		$r: RuleSetup(isQualified, offer.overridenExplicitly)
+		$r: RuleSetup(isQualified, offer!=null, offer.overridenExplicitly)
 	then
 		modify($r){
 			setWinningPriority("P1");
@@ -29,7 +29,7 @@ rule "Define priority P2 on basis of hardcode flag"
 	salience -50
 	enabled($r.winningPriority == "")
 	when
-		$r: RuleSetup(isQualified, offer.hardcode, !offer.overridenExplicitly)
+		$r: RuleSetup(isQualified, offer!=null, offer.hardcode, !offer.overridenExplicitly)
 	then
 		modify($r){
 			setWinningPriority("P2");
@@ -41,7 +41,7 @@ rule "Assign prioriy flag on basis of overriden flag"
 	enabled($r.winningPriority == "")
 	when
 		$rulePrecedence: RulePrecedence()
-		$r: RuleSetup(isQualified, offer.overridenExplicitly, $rulePrecedence.ruleName.equals("Must be overriden explicitly"))
+		$r: RuleSetup(isQualified, offer!=null, offer.overridenExplicitly, $rulePrecedence.ruleName.equals("Must be overriden explicitly"))
 	then
 		modify($r){
 			setWinningPriority($rulePrecedence.getPriority());
@@ -54,7 +54,7 @@ rule "Assign prioriy flag on basis of hardcode flag"
 	enabled($r.winningPriority == "")
 	when
 		$rulePrecedence: RulePrecedence()
-		$r: RuleSetup(isQualified, offer.hardcode, $rulePrecedence.ruleName.equals("Hardcode"))
+		$r: RuleSetup(isQualified, offer!=null, offer.hardcode, $rulePrecedence.ruleName.equals("Hardcode"))
 	then
 		modify($r){
 			setWinningPriority($rulePrecedence.getPriority());
@@ -67,7 +67,7 @@ rule "Assign prioriy flag on basis of priority value"
 	enabled($r.winningPriority == "")
 	when
 		$rulePrecedence: RulePrecedence()
-		$r: RuleSetup(isQualified, offer.priority!=null, $rulePrecedence.ruleName.equals("Priority"))
+		$r: RuleSetup(isQualified, offer!=null, offer.priority!=null, $rulePrecedence.ruleName.equals("Priority"))
 	then
 		modify($r){
 			setWinningPriority($rulePrecedence.getPriority());
@@ -78,7 +78,7 @@ end
 rule "Decide winner on basis of combo field"
 	salience -100
 	when
-		$r: RuleSetup(isQualified, offer.newComboField == 2, !isWinner)
+		$r: RuleSetup(isQualified, offer!=null, offer.newComboField == 2, !isWinner)
 	then
      	modify($r){
 			setIsWinner(true);

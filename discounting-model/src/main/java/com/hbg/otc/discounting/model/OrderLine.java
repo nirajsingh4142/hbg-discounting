@@ -98,8 +98,5 @@ public class OrderLine implements Serializable {
 		this.orderLineId = orderLineId;
 	}
 
-	
-    
-    
 
 }

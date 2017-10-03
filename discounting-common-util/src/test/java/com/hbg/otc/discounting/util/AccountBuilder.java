@@ -6,6 +6,7 @@ import com.hbg.otc.discounting.model.RuleSetup;
 public class AccountBuilder {
 	private OrderLineBuilder superBuilder;
 	private RuleBuilder superRuleBuilder;
+	private StandardRuleBuilder standardRuleBuilder;
 	private final Account instance;
 
 	public AccountBuilder(OrderLineBuilder superBuilder) {
@@ -18,6 +19,11 @@ public class AccountBuilder {
 		this.instance = new Account();
 	}
 	
+	public AccountBuilder(StandardRuleBuilder standardRuleBuilder) {
+		this.standardRuleBuilder = standardRuleBuilder;
+		this.instance = new Account();
+	}
+
 	public AccountBuilder withAccountNumber(Integer accountNumber){
 		this.instance.setAccountNumber(accountNumber);
 		return this;
@@ -64,6 +70,10 @@ public class AccountBuilder {
 
 	public RuleBuilder endAccount(){
 		return superRuleBuilder;
+	}
+	
+	public StandardRuleBuilder endStandardAccount(){
+		return standardRuleBuilder;
 	}
 
 }

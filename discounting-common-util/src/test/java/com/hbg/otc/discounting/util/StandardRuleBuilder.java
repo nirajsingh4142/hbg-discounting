@@ -3,32 +3,32 @@ package com.hbg.otc.discounting.util;
 import java.util.HashMap;
 import java.util.Optional;
 
-import com.hbg.otc.discounting.model.RuleSetup;
+import com.hbg.otc.discounting.model.StandardRuleSetup;
 
-public class RuleBuilder {
+public class StandardRuleBuilder {
 
-	private final RuleSetup instance;
+	private final StandardRuleSetup instance;
 	private Optional<AccountBuilder> accountBuilder = Optional.empty();
 	private Optional<ProductBuilder> productBuilder = Optional.empty();
 	private Optional<DiscountBuilder> discountBuilder = Optional.empty();
 	private Optional<OfferBuilder> offerBuilder = Optional.empty();
 
 
-	public RuleBuilder() {
-		this.instance = new RuleSetup();
+	public StandardRuleBuilder() {
+		this.instance = new StandardRuleSetup();
 	}
 
-	public RuleBuilder withRuleNumber(int ruleNumber){
+	public StandardRuleBuilder withRuleNumber(int ruleNumber){
         this.instance.setRuleNumber(ruleNumber);
         return this;
     }
 	
-	public RuleBuilder withRuleName(String ruleName){
+	public StandardRuleBuilder withRuleName(String ruleName){
         this.instance.setRuleName(ruleName);
         return this;
     }
 	
-	public RuleBuilder withQtyDiscountMap(HashMap<Integer, Integer> qtyDiscount){
+	public StandardRuleBuilder withQtyDiscountMap(HashMap<Integer, Integer> qtyDiscount){
         this.instance.setQtyDiscountMap(qtyDiscount);
         return this;
     }
@@ -53,7 +53,7 @@ public class RuleBuilder {
 		return this.offerBuilder.get();
 	}
 
-	public RuleSetup build(){
+	public StandardRuleSetup build(){
 		if (this.accountBuilder.isPresent()){
             this.instance.setAccount(this.accountBuilder.get().build());
         }
@@ -63,14 +63,11 @@ public class RuleBuilder {
 		if (this.discountBuilder.isPresent()){
             this.instance.setDiscount(this.discountBuilder.get().build());
         }
-		if (this.offerBuilder.isPresent()){
-            this.instance.setOffer(this.offerBuilder.get().build());
-        }
 
 		return this.instance;
 	}
 
-	public RuleBuilder end(){
+	public StandardRuleBuilder end(){
 		return this;
 	}
 }

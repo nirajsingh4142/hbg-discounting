@@ -5,6 +5,7 @@ import com.hbg.otc.discounting.model.Product;
 public class ProductBuilder {
     private  OrderLineBuilder superBuilder;
     private  RuleBuilder superRuleBuilder;
+    private StandardRuleBuilder standardRuleBuilder;
     private final Product instance;
 
     public ProductBuilder(OrderLineBuilder superBuilder) {
@@ -14,6 +15,11 @@ public class ProductBuilder {
     
     public ProductBuilder(RuleBuilder superRuleBuilder) {
         this.superRuleBuilder = superRuleBuilder;
+        this.instance = new Product();
+    }
+    
+    public ProductBuilder(StandardRuleBuilder standardRuleBuilder) {
+        this.standardRuleBuilder = standardRuleBuilder;
         this.instance = new Product();
     }
     
@@ -52,6 +58,10 @@ public class ProductBuilder {
     
     public RuleBuilder endProduct(){
         return superRuleBuilder;
+    } 
+    
+    public StandardRuleBuilder endStandardProduct(){
+        return standardRuleBuilder;
     } 
 
 }

@@ -7,7 +7,7 @@ import java.util.HashMap;
  * @author raghav.rampal
  *
  */
-public class RuleSetup implements Serializable {
+public class StandardRuleSetup implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer ruleNumber;
@@ -15,10 +15,8 @@ public class RuleSetup implements Serializable {
 	private Account account;
 	private Product product;
 	private Discount discount;
-	private Offer offer;
 	private Boolean isQualified = false;
 	private Boolean isWinner = false;
-	private String winningPriority = "";
 	private HashMap<Integer, Integer> qtyDiscountMap = new HashMap<Integer, Integer>();
 
 	public Account getAccount() {
@@ -45,14 +43,6 @@ public class RuleSetup implements Serializable {
 		this.discount = discount;
 	}
 
-	public Offer getOffer() {
-		return offer;
-	}
-
-	public void setOffer(Offer offer) {
-		this.offer = offer;
-	}
-	
 	public String getRuleName() {
 		return ruleName;
 	}
@@ -75,14 +65,6 @@ public class RuleSetup implements Serializable {
 
 	public void setIsQualified(Boolean isQualified) {
 		this.isQualified = isQualified;
-	}
-
-	public String getWinningPriority() {
-		return winningPriority;
-	}
-
-	public void setWinningPriority(String winningPriority) {
-		this.winningPriority = winningPriority;
 	}
 
 	public Boolean getIsWinner() {
